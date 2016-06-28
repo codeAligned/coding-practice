@@ -8,4 +8,6 @@ class ListShortener:
 
 ls = ListShortener()
 sampleList = random.sample(range(0, 100), 10)
+
+print(sampleList)
 print(ls.shortenByNum(sampleList, 50))
