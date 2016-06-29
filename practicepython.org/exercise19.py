@@ -12,9 +12,9 @@ contentWrappers = soup.find_all(class_='content-section')
 
 for content in contentWrappers:
     for ptag in content.findChildren('p'):
-        article += ptag.text + '\n'
+        article += str(ptag.text.strip().encode('utf-8')) + '\n'
 
     article += '\n\n'
 
-with open('lewinsky-humiliation.txt', 'w') as fileobj:
+with open('data/lewinsky-humiliation.txt', 'w') as fileobj:
     fileobj.write(article)

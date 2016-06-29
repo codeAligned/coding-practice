@@ -3,7 +3,7 @@
 # TODO: Find a better way to read files and count words.
 
 occurences = dict()
-with open('lewinsky-humiliation.txt', 'r') as fileobj:
+with open('data/lewinsky-humiliation.txt', 'r') as fileobj:
     line = fileobj.readline()
 
     while line:
