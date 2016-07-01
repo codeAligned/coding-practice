@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+import time
+
 def binarySearch(value, sample, start, end):
     if start > end:
         return -1
@@ -15,10 +17,13 @@ def binarySearch(value, sample, start, end):
 
 with open('data/primenumbers.txt', 'r') as fileobj:
     primes = fileobj.read().splitlines()
+primes = [int(x) for x in primes]
 
 with open('data/happynumbers.txt', 'r') as fileobj:
     happy = fileobj.read().splitlines()
+happy = [int(x) for x in happy]
 
+startTime = time.time()
 commons = []
 happyLen = len(happy)
 
@@ -27,3 +32,15 @@ for i in primes:
         commons.append(i)
 
 print(commons)
+endTime = time.time()
+print('Total time for intersect using binary: ' + str((endTime - startTime) * 1000))
+
+startTime = time.time()
+commons = []
+for i in primes:
+    if i in happy:
+        commons.append(i)
+
+print(commons)
+endTime = time.time()
+print('Total time for intersect using n^2: ' + str((endTime - startTime) * 1000))

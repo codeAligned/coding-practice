@@ -19,3 +19,17 @@ value = random.randint(0, 150)
 
 position = binarySearch(value, sample, 0, len(sample) - 1)
 print(str(value) + ' is found at index ' + str(position))
+
+import time
+print('Python in vs binartSearch time.')
+
+startTime = time.time()
+if 20 in sample:
+    pass
+endTime = time.time()
+print('Total time for in: ' + str((endTime - startTime) * 1000000))
+
+startTime = time.time()
+binarySearch(20, sample, 0, len(sample) - 1)
+endTime = time.time()
+print('Total time for binary: ' + str((endTime - startTime) * 1000000))
