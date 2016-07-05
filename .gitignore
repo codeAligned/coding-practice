@@ -3,3 +3,7 @@ env/
 
 # Atom editor
 .imdone/
+
+__pycache__/
+*.py[cod]
+*$py.class
