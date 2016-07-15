@@ -4,6 +4,10 @@ env/
 # Atom editor
 .imdone/
 
+# Python files
 __pycache__/
 *.py[cod]
 *$py.class
+
+# Java files
+*.class
