@@ -4,6 +4,9 @@ env/
 # Atom editor
 .imdone/
 
+# Eclipse editor
+.project
+
 # Python files
 __pycache__/
 *.py[cod]
