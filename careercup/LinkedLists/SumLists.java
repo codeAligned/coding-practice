@@ -1,5 +1,5 @@
 /*
-Cracking The Coding Interview - 6th Edition. Page 94.
+Cracking The Coding Interview - 6th Edition. Page 95.
 
 Sum Lists: You have two numbers represented by a linked list, where each node contains a single digit.
 The digits are stored in reverse order, such that the 1's digit is at the head of the list.
@@ -21,18 +21,18 @@ import helpers.java.Node;
 
 class SumLists
 {
-    private static Node sum(Node head1, Node head2)
+    private static Node<Integer> sum(Node<Integer> head1, Node<Integer> head2)
     {
-        Node curr1 = head1;
-        Node curr2 = head2;
-        Node sumHead = null;
-        Node sumTail = null;
+        Node<Integer> curr1 = head1;
+        Node<Integer> curr2 = head2;
+        Node<Integer> sumHead = null;
+        Node<Integer> sumTail = null;
 
         int carry = 0;
         while(curr1 != null || curr2 != null)
         {
-            int digitA = 0;
-            int digitB = 0;
+            Integer digitA = 0;
+            Integer digitB = 0;
 
             if(curr1 == null)
             {
@@ -57,7 +57,7 @@ class SumLists
             int sum = digitA + digitB + carry;
             carry = sum > 9 ? 1 : 0;
 
-            Node n = new Node(sum % 10);
+            Node<Integer> n = new Node<Integer>(sum % 10);
             if(sumHead == null)
             {
                 sumHead = n;
@@ -72,7 +72,7 @@ class SumLists
 
         if(carry > 0)
         {
-            Node n = new Node(carry);
+            Node<Integer> n = new Node<Integer>(carry);
             sumTail.next = n;
             sumTail = sumTail.next;
         }
@@ -82,17 +82,19 @@ class SumLists
 
     public static void main(String[] args)
     {
-        String[] inputs = Inputs.readAllInputs();
-        int[] num1 = Inputs.createArrayInteger(inputs[0]);
-        int[] num2 = Inputs.createArrayInteger(inputs[1]);
+        LinkedList<Integer> linkedList = new LinkedList<Integer>();
 
-        Node head1 = LinkedList.createFromArray(num1);
-        Node head2 = LinkedList.createFromArray(num2);
+        String[] lines = Inputs.readAllInputs();
+        Integer[] num1 = Inputs.createArrayOfIntegers(lines[0]);
+        Integer[] num2 = Inputs.createArrayOfIntegers(lines[1]);
 
-        Node sumHead = sum(head1, head2);
+        Node<Integer> head1 = linkedList.createFromArray(num1);
+        Node<Integer> head2 = linkedList.createFromArray(num2);
+
+        Node<Integer> sumHead = sum(head1, head2);
 
         System.out.println();
-        LinkedList.printLinkedList(sumHead);
+        linkedList.printLinkedList(sumHead);
         System.out.println();
     }
 }
