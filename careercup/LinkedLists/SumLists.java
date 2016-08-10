@@ -21,7 +21,7 @@ import helpers.java.Node;
 
 class SumLists
 {
-    private static Node sum(Node head1, Node head2)
+    private static Node sumBackward(Node head1, Node head2)
     {
         Node curr1 = head1;
         Node curr2 = head2;
@@ -80,6 +80,73 @@ class SumLists
         return sumHead;
     }
 
+    private static Node sumRecursively(Node head1, Node head2)
+    {
+        if(head1.next == null && head2.next == null)
+        {
+            int sum = head1.data + head2.data;
+            Node n = new Node(sum % 10);
+            Node carry = new Node(0);
+
+            if(sum > 9)
+            {
+                carry.data = 1;
+            }
+
+            carry.next = n;
+            return carry;
+        }
+
+        Node n = sumRecursively(head1.next, head2.next);
+        int carryData = n.data;
+
+        int sum = head1.data + head2.data + carryData;
+        n.data = sum % 10;
+        Node carry = new Node(0);
+
+        if(sum > 9)
+        {
+            carry.data = 1;
+        }
+
+        carry.next = n;
+        return carry;
+    }
+
+    private static Node sumForward(Node head1, Node head2)
+    {
+        Node current1 = head1;
+        Node current2 = head2;
+
+        // Pad with 0's in front of smaller linked list.
+        while(current1 != null || current2 != null)
+        {
+            if(current1 == null)
+            {
+                Node n = new Node(0);
+                n.next = head1;
+                head1 = n;
+            }
+            else
+            {
+                current1 = current1.next;
+            }
+
+            if(current2 == null)
+            {
+                Node n = new Node(0);
+                n.next = head2;
+                head2 = n;
+            }
+            else
+            {
+                current2 = current2.next;
+            }
+        }
+
+        return sumRecursively(head1, head2);
+    }
+
     public static void main(String[] args)
     {
         String[] inputs = Inputs.readAllInputs();
@@ -89,10 +156,15 @@ class SumLists
         Node head1 = LinkedList.createFromArray(num1);
         Node head2 = LinkedList.createFromArray(num2);
 
-        Node sumHead = sum(head1, head2);
+        Node sumBack = sumBackward(head1, head2);
+        Node sumForwd = sumForward(head1, head2);
 
         System.out.println();
-        LinkedList.printLinkedList(sumHead);
+        LinkedList.printLinkedList(sumBack);
+        System.out.println();
+
+        System.out.println();
+        LinkedList.printLinkedList(sumForwd);
         System.out.println();
     }
 }
