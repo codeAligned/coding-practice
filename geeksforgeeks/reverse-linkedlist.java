@@ -10,16 +10,16 @@ import helpers.java.Node;
 
 class ReverseLinkedList
 {
-    private static Node reverseLinkedListIteratively(Node head)
+    private static Node<Integer> reverseLinkedListIteratively(Node<Integer> head)
     {
         if(head == null || head.next == null)
         {
             return head;
         }
 
-        Node current = head;
-        Node previous = null;
-        Node next = null;
+        Node<Integer> current = head;
+        Node<Integer> previous = null;
+        Node<Integer> next = null;
 
         while(current != null)
         {
@@ -33,14 +33,14 @@ class ReverseLinkedList
         return head;
     }
 
-    private static Node reverseLinkedListRecursively(Node head)
+    private static Node<Integer> reverseLinkedListRecursively(Node<Integer> head)
     {
         if(head == null || head.next == null)
         {
             return head;
         }
 
-        Node endNode = reverseLinkedListRecursively(head.next);
+        Node<Integer> endNode = reverseLinkedListRecursively(head.next);
         head.next.next = head;
         head.next = null;
 
@@ -49,19 +49,21 @@ class ReverseLinkedList
 
     public static void main(String[] args)
     {
-        String[] inputs = Inputs.readAllInputs();
-        int[] data = Inputs.createArrayInteger(inputs[0]);
+        LinkedList<Integer> linkedList = new LinkedList<Integer>();
 
-        Node head = LinkedList.createFromArray(data);
+        String[] lines = Inputs.readAllInputs();
+        Integer[] data = Inputs.createArrayOfIntegers(lines[0]);
+
+        Node<Integer> head = linkedList.createFromArray(data);
         head = reverseLinkedListIteratively(head);
         System.out.println();
-        LinkedList.printLinkedList(head);
+        linkedList.printLinkedList(head);
         System.out.println();
 
-        head = LinkedList.createFromArray(data);
+        head = linkedList.createFromArray(data);
         head = reverseLinkedListRecursively(head);
         System.out.println();
-        LinkedList.printLinkedList(head);
+        linkedList.printLinkedList(head);
         System.out.println();
     }
 }

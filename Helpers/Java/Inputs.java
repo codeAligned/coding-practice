@@ -7,17 +7,25 @@ public class Inputs
 {
     public static String[] readAllInputs()
     {
-        Scanner scanner = new Scanner(System.in);
-        ArrayList<String> inputs = new ArrayList<String>();
+        Scanner scanner = null;
+        ArrayList<String> inputs;
 
-        String line = null;
-        do
+        try
         {
-            line = scanner.nextLine();
-            inputs.add(line);
-        } while(! line.equals("EOF"));
+            scanner = new Scanner(System.in);
+            inputs = new ArrayList<String>();
 
-        scanner.close();
+            String line = null;
+            do
+            {
+                line = scanner.nextLine();
+                inputs.add(line);
+            } while(! line.equals("EOF"));
+        }
+        finally
+        {
+            if(scanner != null) scanner.close();
+        }
 
         int i = 0;
         String[] stringArray = new String[inputs.size()];
@@ -30,10 +38,25 @@ public class Inputs
         return stringArray;
     }
 
-    public static int[] createArrayInteger(String input)
+    public static Character[] createArrayOfChars(String input)
     {
         String[] stringArray = input.split(" ");
-        int[] data = new int[stringArray.length];
+        Character[] data = new Character[stringArray.length];
+
+        int i = 0;
+        for(String s : stringArray)
+        {
+            data[i] = new Character(s.charAt(0));
+            i += 1;
+        }
+
+        return data;
+    }
+
+    public static Integer[] createArrayOfIntegers(String input)
+    {
+        String[] stringArray = input.split(" ");
+        Integer[] data = new Integer[stringArray.length];
 
         int i = 0;
         for(String s : stringArray)
@@ -43,14 +66,5 @@ public class Inputs
         }
 
         return data;
-    }
-
-    public static void printIntArray(int[] input, char end)
-    {
-        for(int d : input)
-        {
-            System.out.print(d + "" + end);
-        }
-        System.out.println();
     }
 }

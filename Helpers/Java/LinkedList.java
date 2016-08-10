@@ -2,16 +2,16 @@ package helpers.java;
 
 import helpers.java.Node;
 
-public class LinkedList
+public class LinkedList<T>
 {
-    public static Node createFromArray(int[] data)
+    public Node<T> createFromArray(T[] data)
     {
-        Node head = null;
-        Node tail = null;
+        Node<T> head = null;
+        Node<T> tail = null;
 
-        for(int d : data)
+        for(T d : data)
         {
-            Node n = new Node(d);
+            Node<T> n = new Node<T>(d);
 
             if(head == null)
             {
@@ -28,9 +28,9 @@ public class LinkedList
         return head;
     }
 
-    public static void printLinkedList(Node head)
+    public void printLinkedList(Node<T> head)
     {
-        Node current = head;
+        Node<T> current = head;
 
         while(current != null)
         {
