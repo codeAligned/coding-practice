@@ -6,7 +6,7 @@ Palindrome: Implement a function to check if a linked list is a palindrome.
 
 package careercup.linkedlists;
 
-import java.util.HashMap;
+import java.util.Stack;
 
 import helpers.java.Inputs;
 import helpers.java.LinkedList;
@@ -14,42 +14,32 @@ import helpers.java.Node;
 
 class Palindrome
 {
-    private static boolean isPalindrome(Node<Character> head)
+    private static boolean isPalindromeIteratively(Node<Character> head)
     {
-        HashMap<Character, Integer> hm = new HashMap<Character, Integer>();
-        Node<Character> current = head;
+        Stack<Character> stack = new Stack<Character>();
+        Node<Character> fast = head;
+        Node<Character> slow = head;
 
-        while(current != null)
+        while(fast != null && fast.next != null)
         {
-            Integer count = hm.get(current.data);
-            if(count == null)
-            {
-                hm.put(current.data, 1);
-            }
-            else
-            {
-                hm.put(current.data, count + 1);
-            }
-
-            current = current.next;
+            stack.push(slow.data);
+            slow = slow.next;
+            fast = fast.next.next;
         }
 
-        int unbalancedCount = 0;
-        Object[] counts = hm.values().toArray();
-
-        for(Object obj : counts)
+        if(fast != null)
         {
-            int count = (Integer) obj;
+            slow = slow.next;
+        }
 
-            if(count % 2 != 0)
+        while(slow != null)
+        {
+            if(slow.data.compareTo(stack.pop()) != 0)
             {
-                unbalancedCount += 1;
-
-                if(unbalancedCount > 1)
-                {
-                    return false;
-                }
+                return false;
             }
+
+            slow = slow.next;
         }
         return true;
     }
@@ -62,6 +52,6 @@ class Palindrome
         Character[] data = Inputs.createArrayOfChars(lines[0]);
 
         Node<Character> head = linkedList.createFromArray(data);
-        System.out.println(isPalindrome(head));
+        System.out.println(isPalindromeIteratively(head));
     }
 }
