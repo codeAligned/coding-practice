@@ -4,6 +4,10 @@ Cracking The Coding Interview - 6th Edition. Page 95.
 Palindrome: Implement a function to check if a linked list is a palindrome.
 */
 
+/*
+LESSON: LINKEDLIST - Use fast-slow-runner techique to find middle of list.
+*/
+
 package careercup.linkedlists;
 
 import java.util.Stack;

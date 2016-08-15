@@ -4,6 +4,14 @@ Q 1.1: Is Unique: Implement an algorithm to determine if a string has all unique
 What if you cannot use additional data structures?
 */
 
+/*
+LESSON: BIT - To set a bit, OR with that position set.
+LESSON: BIT - To unset a bit, first set that position, then NOT it, then AND.
+LESSON: BIT - To toggle a bit, XOR with that position set.
+LESSON: BIT - To check if atmost one num is non-zero, XOR of all must be equal to OR of all. E.g. 2^0^0=2|0|0
+LESSON: BIT - To check if power of 2, AND with its neg must produce itself. E.g. 4 & -4 = 4. 3 & -3 != 3.
+*/
+
 class CheckIfStringHasUniqueChars
 {
     public static void main(String args[])
