@@ -19,7 +19,7 @@ public class Inputs
             do
             {
                 line = scanner.nextLine();
-                inputs.add(line);
+                if(! line.equals("EOF")) inputs.add(line);
             } while(! line.equals("EOF"));
         }
         finally
