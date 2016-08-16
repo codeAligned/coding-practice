@@ -1,3 +1,5 @@
+package games;
+
 import java.util.Stack;
 import helpers.java.Inputs;
 
@@ -27,7 +29,6 @@ class Sudoku
             {
                 if(sudoku[i][j] == 0)
                 {
-                    System.out.print("For cell (" + i + ", " + j + "). ");
                     boolean found = false;
 
                     for(; k <= 9; k++)
@@ -35,7 +36,6 @@ class Sudoku
                         sudoku[i][j] = k;
                         if(check(sudoku, i, j))
                         {
-                            System.out.println("And I got it!");
                             Cell cell = new Cell(i, j, k);
                             stack.push(cell);
                             found = true;
@@ -71,13 +71,11 @@ class Sudoku
     private static boolean check(int[][] sudoku, int i, int j)
     {
         int item = sudoku[i][j];
-        System.out.print("Trying " + item + ". ");
 
         for(int k = 0; k < sudoku[i].length; k++)
         {
             if(k != j && item == sudoku[i][k])
             {
-                System.out.print("Found at " + i + ", " + k + ". ");
                 return false;
             }
         }
@@ -86,8 +84,20 @@ class Sudoku
         {
             if(k != i && item == sudoku[k][j])
             {
-                System.out.print("Found at " + k + ", " + j + ". ");
                 return false;
+            }
+        }
+
+        int ci = 3 * (i / 3);
+        int cj = 3 * (j / 3);
+        for(int x = ci; x < ci + 3; x++)
+        {
+            for(int y = cj; y < cj + 3; y++)
+            {
+                if(x != i && y != j && sudoku[x][y] == sudoku[i][j])
+                {
+                    return false;
+                }
             }
         }
 
