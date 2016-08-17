@@ -10,8 +10,34 @@ class BFS
 {
     private static Integer[] traverseBFS(HashMap<Integer, Node<Integer>> graph, Integer startNode)
     {
-        ArrayList<Integer> task = new ArrayList<Integer>();
+        ArrayList<Integer> vertices = new ArrayList<Integer>();
         HashMap<Integer, Boolean> visited = new HashMap<Integer, Boolean>();
+        ArrayList<Integer> task = new ArrayList<Integer>();
+        task.add(startNode);
+
+        while(task.size() > 0)
+        {
+            Integer current = task.remove(0);
+
+            if(visited.get(current) == null)
+            {
+                vertices.add(current);
+                visited.put(current, true);
+
+                Node<Integer> currentNbr = graph.get(current);
+                while(currentNbr != null)
+                {
+                    if(visited.get(currentNbr.data) == null)
+                    {
+                        task.add(currentNbr.data);
+                    }
+
+                    currentNbr = currentNbr.next;
+                }
+            }
+        }
+
+        return vertices.toArray(new Integer[vertices.size()]);
     }
 
     public static void main(String[] args)
