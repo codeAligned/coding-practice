@@ -15,10 +15,5 @@ class KBitCombinations
             System.out.println("01 10");
             System.out.println("11");
         }
-
-        for(i = k; i > 0; i--)
-        {
-
-        }
     }
 }
