@@ -60,9 +60,9 @@ public class TicTacWin {
             int countRow = this.counts[i][0];
             int countCol = this.counts[i][1];
 
-            if(countRow % 3 == 0) {
+            if(countRow != 0 && countRow % 3 == 0) {
                 return countRow > 0 ? 'x' : 'o';
-            } else if(countCol % 3 == 0) {
+            } else if(countRow != 0 && countCol % 3 == 0) {
                 return countCol > 0 ? 'x' : 'o';
             }
         }
@@ -86,7 +86,7 @@ public class TicTacWin {
 
         TicTacWin game = new TicTacWin(size);
         game.fillBoard(board);
-        game.printCounts();
+        // game.printCounts();
 
         char c = game.whoWins();
         if(c == 'x') {

@@ -4,9 +4,17 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
-// TODO: Disjoints not working.
-
 public class DisjointsForEvenForest {
+    private static class ReturnValue {
+        int disjoints;
+        int attachedNodeCount;
+
+        public ReturnValue(int disjoints, int attachedNodeCount) {
+            this.disjoints = disjoints;
+            this.attachedNodeCount = attachedNodeCount;
+        }
+    }
+
     private static class Node {
         int data;
         ArrayList<Node> children;
@@ -25,28 +33,25 @@ public class DisjointsForEvenForest {
         }
     }
 
-    private static int countMaximumDisjoints(Node head) {
+    private static ReturnValue countMaximumDisjoints(Node head) {
         if(! head.hasChildren()) {
-            return 0;
+            return new ReturnValue(0, 1);
         }
 
         int count = 0;
         int remaining = 0;
 
         for(Node child : head.children) {
-            int disjoints = countMaximumDisjoints(child);
-            if(disjoints != 0) {
-                count += disjoints;
-            } else {
-                remaining += 1;
-            }
+            ReturnValue rv = countMaximumDisjoints(child);
+            count += rv.disjoints;
+            remaining += rv.attachedNodeCount;
         }
 
         if((remaining + 1) % 2 == 0) {
-            count += 1;
+            return new ReturnValue(count + 1, 0);
+        } else {
+            return new ReturnValue(count, remaining + 1);
         }
-
-        return count;
     }
 
     public static void main(String[] args) {
@@ -87,6 +92,8 @@ public class DisjointsForEvenForest {
         }
 
         Node head = dataNodeMapping.get(1);
-        System.out.println(countMaximumDisjoints(head));
+
+        ReturnValue rv = countMaximumDisjoints(head);
+        System.out.println(rv.disjoints - 1);
     }
 }
