@@ -7,4 +7,35 @@ Find out how quickly all the tasks can be completed.
 E.g. [3, 4, 1, 2, 6, 7, 2, 1, 5] and N=3
 """
 
-# TODO: task scheduler dustin
+
+import queue
+
+
+def doTasks(tasks, n):
+    tasks.sort(reverse=True)
+    pq = queue.PriorityQueue(n)
+
+    i = 0
+    length = len(tasks)
+    time = 0
+
+    while pq.full() is False and pq.qsize() <= length:
+        pq.put(tasks[i])
+        i += 1
+
+    while pq.empty() is False:
+        taskTime = pq.get()
+        time += taskTime
+
+        # TODO: Dustin - task scheduler.
+        for i in range(0, pq.qsize()):
+            pq[i] -= taskTime
+
+        if i < length:
+            pq.put(tasks[i])
+
+
+n = int(input())
+tasks = [int(x) for x in input().split(' ')]
+time = doTasks(tasks, n)
+print(time, n)
