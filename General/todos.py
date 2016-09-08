@@ -1,3 +1,6 @@
-# TODO: Tree map implementation.
-# TODO: Tree set implementation.
-# TODO: Heaps implementation.
+# TODO: General - Tree map implementation.
+# TODO: General - Tree set implementation.
+# TODO: General - Heaps implementation.
+
+# TODO: General - Disjoint sets aka union find
+# TODO: General - Min spanning tree.
