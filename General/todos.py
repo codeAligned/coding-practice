@@ -4,6 +4,3 @@
 
 # TODO: General - Disjoint sets aka union find
 # TODO: General - Min spanning tree.
-
-# TODO: General - Ordered dict.
-# TODO: @memoize decorator.
